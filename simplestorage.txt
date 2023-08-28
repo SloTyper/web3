@@ -1,0 +1,28 @@
+    //SPDX-License-Identifier: MIT
+    pragma solidity ^0.6.0;
+
+    contract SimpleStorage {
+        uint256 num;
+        
+        struct People {
+            uint256 num;
+            string name;
+        }
+
+        //People public person = People({num: 2, name: "Harish"});
+
+        People[] public people;
+        mapping(string => uint256) public nametofavnum;
+        function store(uint256 favnum) public {
+            num = favnum;
+        }
+
+        function retrieve() public view returns(uint256) {
+            return num;
+        }
+
+        function addPerson(string memory _name, uint256 favnum) public {
+            people.push(People(favnum, _name));
+            nametofavnum[_name] = favnum;
+        }
+    }
